@@ -1,0 +1,16 @@
+.auth__sign-up_link {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity 0.5s ease;
+}
+
+.auth__sign-up_link:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
