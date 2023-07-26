@@ -1,0 +1,17 @@
+.popup__input-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 30px;
+  position: relative;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+}
