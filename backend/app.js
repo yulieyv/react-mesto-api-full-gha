@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
 const errorHandler = require('./middlewares/errorHandler');
@@ -40,7 +39,6 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-app.use(cookieParser());
 app.use(router);
 app.use(errorLogger);
 app.use(errors());
