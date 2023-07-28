@@ -102,7 +102,6 @@ function App() {
         setEmail(email);
         navigate("/*", { replace: true });
       })
-
       .catch((err) => {
         setIsInfoTooltipPopupOpen(true);
         setStatus({
