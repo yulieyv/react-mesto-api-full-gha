@@ -128,3 +128,8 @@ module.exports.getUserInfo = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports.signOut = (req, res) => {
+  res.clearCookie('token');
+  res.status(OK_STATUS).send('Выход выполнен успешно');
+};
