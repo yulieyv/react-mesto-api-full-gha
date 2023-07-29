@@ -51,6 +51,7 @@ module.exports.createUser = (req, res, next) => {
         about: user.about,
         avatar: user.avatar,
         email: user.email,
+        _id: user._id,
       });
     })
     .catch((error) => {
@@ -113,7 +114,7 @@ module.exports.updateAvatar = (req, res, next) => {
 };
 
 module.exports.getUserInfo = (req, res, next) => {
-  User.findById(req.params.userId)
+  User.findById(req.user._id)
     .then((user) => {
       if (!user) {
         return next(new NotFoundError('Информация о пользователе не найдена'));
