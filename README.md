@@ -5,11 +5,11 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/yulieyv/react-mesto-api-full-gha
+Адрес репозитория: https://github.com/...
 
 ## Ссылки на проект
 
-IP-адрес 158.160.20.59
+IP 158.160.20.59
 
 Frontend https://yamalieva.students.nomoredomains.xyz
 
