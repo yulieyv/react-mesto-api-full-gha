@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function AuthForm(props) {
-    return (
+  return (
     <>
       <section className="auth">
         <form className="auth__form" onSubmit={props.onSubmit}>
@@ -29,6 +30,14 @@ function AuthForm(props) {
           <button className="auth__submit-button" type="submit">
             {props.action}
           </button>
+          <div className="auth__sign-up">
+            <p className="auth__sign-up_title">
+              {props.question}
+              <Link className="auth__sign-up_link" to="/sign-in">
+                &nbsp; {props.answer}
+              </Link>
+            </p>
+          </div>
         </form>
       </section>
     </>

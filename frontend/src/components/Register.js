@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import useForm from "../hooks/useForm";
 import AuthForm from "./AuthForm";
 
@@ -22,15 +21,9 @@ function Register(props) {
         action="Зарегистрироваться"
         email={email.values}
         password={password.values}
+        question="Уже зарегистрированы?"
+        answer="Войти"
       />
-      <div className="auth__sign-up">
-        <p className="auth__sign-up_title">
-          Уже зарегистрировались?
-          <Link className="auth__sign-up_link" to="/sign-in">
-            &nbsp; Войти
-          </Link>
-        </p>
-      </div>
     </>
   );
 }
