@@ -86,7 +86,7 @@ class Api {
 export const api = new Api({
   baseUrl: "https://api.yamalieva.students.nomoredomains.xyz",
   headers: {
-    authorization: "e761b675-104a-46b8-8d1b-b0499c848400",
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
   },
 });
