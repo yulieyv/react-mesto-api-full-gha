@@ -83,8 +83,11 @@ module.exports.getUser = (req, res, next) => {
     .catch(next);
 };
 
-const updateUserData = (req, res, next, config = {}) => {
-  User.findByIdAndUpdate(req.user._id, req.body, config)
+const updateUserData = (req, res, next, data) => {
+  User.findByIdAndUpdate(req.user._id, data, {
+    new: true,
+    runValidators: true,
+  })
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Информация о пользователе не найдена');
@@ -100,17 +103,11 @@ const updateUserData = (req, res, next, config = {}) => {
 };
 
 module.exports.updateUserInfo = (req, res, next) => {
-  updateUserData(req, res, next, {
-    new: true,
-    runValidators: true,
-  });
+  updateUserData(req, res, next, req.body);
 };
 
 module.exports.updateAvatar = (req, res, next) => {
-  updateUserData(req, res, next, {
-    new: true,
-    runValidators: true,
-  });
+  updateUserData(req, res, next, req.body);
 };
 
 module.exports.getUserInfo = (req, res, next) => {
