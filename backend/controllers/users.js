@@ -23,11 +23,7 @@ module.exports.login = (req, res, next) => {
       );
       res
         .status(OK_STATUS)
-        .cookie('jwt', token, {
-          maxAge: 3600000,
-          httpOnly: true,
-        })
-        .send({ message: 'Авторизация прошла успешно' });
+        .send({ token });
     })
     .catch(next);
 };
