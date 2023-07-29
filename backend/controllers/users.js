@@ -51,7 +51,6 @@ module.exports.createUser = (req, res, next) => {
         about: user.about,
         avatar: user.avatar,
         email: user.email,
-        _id: user._id,
       });
     })
     .catch((error) => {
@@ -83,11 +82,8 @@ module.exports.getUser = (req, res, next) => {
     .catch(next);
 };
 
-const updateUserData = (req, res, next, data) => {
-  User.findByIdAndUpdate(req.user._id, data, {
-    new: true,
-    runValidators: true,
-  })
+const updateUserData = (req, res, next, config = {}) => {
+  User.findByIdAndUpdate(req.user._id, req.body, config)
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Информация о пользователе не найдена');
@@ -103,16 +99,21 @@ const updateUserData = (req, res, next, data) => {
 };
 
 module.exports.updateUserInfo = (req, res, next) => {
-  updateUserData(req, res, next, req.body);
+  updateUserData(req, res, next, {
+    new: true,
+    runValidators: true,
+  });
 };
 
 module.exports.updateAvatar = (req, res, next) => {
-  updateUserData(req, res, next, req.body);
+  updateUserData(req, res, next, {
+    new: true,
+    runValidators: true,
+  });
 };
 
 module.exports.getUserInfo = (req, res, next) => {
-  console.log(req.user._id);
-  User.findById(req.user._id)
+  User.findById(req.params.userId)
     .then((user) => {
       if (!user) {
         return next(new NotFoundError('Информация о пользователе не найдена'));

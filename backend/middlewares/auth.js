@@ -10,8 +10,8 @@ const auth = (req, res, next) => {
     return next(new UnauthorizedError('Необходима авторизация'));
   }
 
-  const token = authorization.replace('Bearer ', '');
   let payload;
+  const token = authorization.replace('Bearer ', '');
 
   try {
     payload = jwt.verify(
