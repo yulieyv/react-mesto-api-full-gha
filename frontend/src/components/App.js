@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Route, useNavigate, Routes} from "react-router-dom";
+import { BrowserRouter as Route, useNavigate, Routes } from "react-router-dom";
 import Header from "./Header.js";
 import Footer from "./Footer.js";
 import Main from "./Main.js";
@@ -50,7 +50,7 @@ function App() {
   }, [loggedIn]);
 
   function checkToken() {
-    if (localStorage.getItem("jwt")) {
+      if (localStorage.getItem("jwt")) {
       const jwt = localStorage.getItem("jwt");
       auth
         .getContent(jwt)
