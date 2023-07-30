@@ -37,20 +37,8 @@ function App() {
   const [status, setStatus] = React.useState({ path: "", text: "" });
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (loggedIn) {
-      Promise.all([api.getUserInfo(), api.getInitialCards()])
-        .then(([user, cards]) => {
-          setCurrentUser(user);
-          setCards(cards);
-        })
-        .catch((err) => console.log(err))
-        .finally(() => {});
-    }
-  }, [loggedIn]);
-
   function checkToken() {
-      if (localStorage.getItem("jwt")) {
+    if (localStorage.getItem("jwt")) {
       const jwt = localStorage.getItem("jwt");
       auth
         .getContent(jwt)
@@ -70,6 +58,17 @@ function App() {
   React.useEffect(() => {
     checkToken();
   }, []);
+  React.useEffect(() => {
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+        .then(([user, cards]) => {
+          setCurrentUser(user);
+          setCards(cards);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {});
+    }
+  }, [loggedIn]);
 
   function handleRegisterSubmit(password, email) {
     auth
