@@ -35,7 +35,8 @@ export function login(password, email) {
     .then((data) => {
       if (data.token) {
         localStorage.setItem("jwt", data.token);
-        return data;
+        //console.log(`Это data.token ${data.token}`);
+        return data.token;
       }
     });
 }
@@ -45,7 +46,7 @@ export const getContent = (token) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`
     },
   })
     .then(checkResponse)

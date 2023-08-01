@@ -7,10 +7,10 @@ const { validateLogin } = require('../middlewares/celebrate');
 const { createUser, login, signOut } = require('../controllers/users');
 const NotFoundError = require('../errors/NotFoundError');
 
+router.post('/signin', validateLogin, login);
+router.post('/signup', validateLogin, createUser);
 router.use('/users', auth, userRouter);
 router.use('/cards', auth, cardRouter);
-router.post('/signup', validateLogin, createUser);
-router.post('/signin', validateLogin, login);
 router.post('/signout', signOut);
 
 router.use('*', auth, (req, res, next) => {

@@ -37,27 +37,6 @@ function App() {
   const [status, setStatus] = React.useState({ path: "", text: "" });
   const navigate = useNavigate();
 
-  function checkToken() {
-    if (localStorage.getItem("jwt")) {
-      const jwt = localStorage.getItem("jwt");
-      auth
-        .getContent(jwt)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            setEmail(res.data.email);
-            navigate("/", { replace: true });
-          } else {
-            setLoggedIn(false);
-          }
-        })
-        .catch((err) => console.log(`Ошибка: ${err}`));
-    }
-  }
-
-  React.useEffect(() => {
-    checkToken();
-  }, []);
   React.useEffect(() => {
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -69,6 +48,30 @@ function App() {
         .finally(() => {});
     }
   }, [loggedIn]);
+
+  React.useEffect(() => {
+    checkTocken();
+  }, []);
+
+  function checkTocken() {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      auth
+        .getContent(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setEmail(res.email);
+            navigate("/*", { replace: true });
+          } else {
+            setLoggedIn(false);
+          }
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        });
+    }
+  }
 
   function handleRegisterSubmit(password, email) {
     auth
@@ -93,13 +96,15 @@ function App() {
   }
 
   function handleLoginSubmit(password, email) {
+    //console.log(loggedIn);
+    //console.log(`Токен при авторизации ${localStorage.getItem("jwt")}`);
     auth
       .login(password, email)
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
         setEmail(email);
-        navigate("/*", { replace: true });
+        localStorage.setItem("jwt", res);
+        navigate("/", { replace: true });
       })
       .catch((err) => {
         setIsInfoTooltipPopupOpen(true);
