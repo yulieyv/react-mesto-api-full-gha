@@ -27,7 +27,10 @@ class Api {
   patchUserInfo({ name, about }) {
     return this._requestUrl(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         name: name,
         about: about,
@@ -38,7 +41,10 @@ class Api {
   patchUserAvatar({ avatar }) {
     return this._requestUrl(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         avatar: avatar,
       }),
