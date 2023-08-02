@@ -96,8 +96,6 @@ function App() {
   }
 
   function handleLoginSubmit(password, email) {
-    //console.log(loggedIn);
-    //console.log(`Токен при авторизации ${localStorage.getItem("jwt")}`);
     auth
       .login(password, email)
       .then((res) => {
